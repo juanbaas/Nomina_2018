@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Nomina2018.Models.SucursalesModel>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<h2>Sucursales</h2>
+<table class="table">
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.calle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noExterior)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.noInterior)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Colonia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.localidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.referencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.municipio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pais)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codigoPostal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.alta)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idSucursal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.calle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noExterior)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.noInterior)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Colonia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.localidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.referencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.municipio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pais)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigoPostal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.alta)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.idSucursal }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.idSucursal }, new { onclick = "return confirm('Are sure wants to delete?')", @class = "btn btn-danger" });
+
+        </td>
+    </tr>
+}
+
+</table>

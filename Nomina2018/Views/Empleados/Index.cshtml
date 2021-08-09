@@ -1,0 +1,237 @@
+﻿@*@model IEnumerable<Nomina2018.Models.EmpleadosModel>*@
+@model IEnumerable<Nomina2018.Models.Empleado>
+<br />
+<p>
+
+</p>
+<div class="row">
+    <div class="col"><h2>Empleados</h2></div> <h5 style="padding-left:100px">Buscar por número de empleado.</h5>
+    <div class="col">
+
+        <form class="navbar-form navbar">
+
+            @Html.ActionLink("Create New", "Create")
+            @*@using (Html.BeginForm("Empleados", "Empleados", FormMethod.Get))
+            {
+                @Html.TextBox("searching")<button type="submit" class="btn btn-default" value="search">Buscar..</button>
+            }*@
+            @using (Html.BeginForm("Index", "Empleados", FormMethod.Get))
+            {
+                @Html.TextBox("searching")<button type="submit" class="btn btn-default" value="search" >Buscar..</button>
+                @*@Html.TextBox("searching")<input type="submit" value="search"/>*@
+            }
+        </form>
+
+    </div>
+    <br />
+    <div class="col">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tr class="success">
+                    <th>
+                        @Html.DisplayNameFor(model => model.IdEmpleado)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.numEmpleado)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.curp)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.idTipoRegimen)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.idDepartamentos)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fechaInicioRelLaboral)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.puesto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.idTipoContrato)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.idTipoJornada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.idPeriodicidad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.salarioDiarioIntegrado)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.calle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.noExterior)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.noInterior)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.colonia)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.localidad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.municipio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.estado)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.pais)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.codigoPostal)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.telefono)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.correo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.alta)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.importeFijo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.aguinaldo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.vacaciones)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.salarioBaseCotizacion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fechaBaja)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.idSucursal)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @if (Model.Count() == 0)
+                {
+                    <tr>
+                        <td colspan="3" style="color:red">
+                            No se encontro ningun registro.
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdEmpleado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.numEmpleado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.curp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idTipoRegimen)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idDepartamentos)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fechaInicioRelLaboral)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.puesto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idTipoContrato)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idTipoJornada)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idPeriodicidad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.salarioDiarioIntegrado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.calle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.noExterior)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.noInterior)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.colonia)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.localidad)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.municipio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.estado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.pais)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.codigoPostal)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.telefono)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.correo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.alta)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.importeFijo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.aguinaldo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.vacaciones)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.salarioBaseCotizacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fechaBaja)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idSucursal)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.IdEmpleado }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.IdEmpleado }, new { onclick = "return confirm('Are sure wants to delete?')", @class = "btn btn-danger" })
+                        </td>
+                    </tr>
+                }
+                }
+            </table>
+        </div>
+    </div>
+</div>

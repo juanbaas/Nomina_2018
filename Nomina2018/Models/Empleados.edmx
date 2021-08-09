@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Nomina2018Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Departamentos">
+          <Key>
+            <PropertyRef Name="idDepartamentos" />
+          </Key>
+          <Property Name="idDepartamentos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="comentarios" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="numEmpleado" Type="varchar" MaxLength="50" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="curp" Type="varchar" MaxLength="18" />
+          <Property Name="idTipoRegimen" Type="int" />
+          <Property Name="idDepartamentos" Type="int" />
+          <Property Name="fechaInicioRelLaboral" Type="datetime" />
+          <Property Name="puesto" Type="varchar" MaxLength="150" />
+          <Property Name="idTipoContrato" Type="int" />
+          <Property Name="idTipoJornada" Type="int" />
+          <Property Name="idPeriodicidad" Type="int" />
+          <Property Name="salarioDiarioIntegrado" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="calle" Type="varchar" MaxLength="50" />
+          <Property Name="noExterior" Type="varchar" MaxLength="50" />
+          <Property Name="noInterior" Type="varchar" MaxLength="50" />
+          <Property Name="colonia" Type="varchar" MaxLength="50" />
+          <Property Name="localidad" Type="varchar" MaxLength="50" />
+          <Property Name="municipio" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+          <Property Name="pais" Type="varchar" MaxLength="50" />
+          <Property Name="codigoPostal" Type="varchar" MaxLength="10" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="correo" Type="varchar" MaxLength="100" />
+          <Property Name="alta" Type="int" />
+          <Property Name="importeFijo" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="aguinaldo" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="vacaciones" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="salarioBaseCotizacion" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="fechaBaja" Type="datetime" />
+          <Property Name="idSucursal" Type="int" />
+        </EntityType>
+        <Association Name="FK_idDepartamentos">
+          <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="0..1" />
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamentos">
+              <PropertyRef Name="idDepartamentos" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="idDepartamentos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spListarEmpleadosDet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Nomina2018ModelStoreContainer">
+          <EntitySet Name="Departamentos" EntityType="Self.Departamentos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_idDepartamentos" Association="Self.FK_idDepartamentos">
+            <End Role="Departamentos" EntitySet="Departamentos" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Nomina2018Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="idDepartamentos" />
+          </Key>
+          <Property Name="idDepartamentos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="comentarios" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK_idDepartamentos" FromRole="Departamentos" ToRole="Empleados" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="numEmpleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="curp" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="idTipoRegimen" Type="Int32" />
+          <Property Name="idDepartamentos" Type="Int32" />
+          <Property Name="fechaInicioRelLaboral" Type="DateTime" Precision="3" />
+          <Property Name="puesto" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="idTipoContrato" Type="Int32" />
+          <Property Name="idTipoJornada" Type="Int32" />
+          <Property Name="idPeriodicidad" Type="Int32" />
+          <Property Name="salarioDiarioIntegrado" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="noExterior" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="noInterior" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="colonia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="localidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="municipio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="codigoPostal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="alta" Type="Int32" />
+          <Property Name="importeFijo" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="aguinaldo" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="vacaciones" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="salarioBaseCotizacion" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="fechaBaja" Type="DateTime" Precision="3" />
+          <Property Name="idSucursal" Type="Int32" />
+          <NavigationProperty Name="Departamento" Relationship="Self.FK_idDepartamentos" FromRole="Empleados" ToRole="Departamentos" />
+        </EntityType>
+        <Association Name="FK_idDepartamentos">
+          <End Role="Departamentos" Type="Self.Departamento" Multiplicity="0..1" />
+          <End Role="Empleados" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamentos">
+              <PropertyRef Name="idDepartamentos" />
+            </Principal>
+            <Dependent Role="Empleados">
+              <PropertyRef Name="idDepartamentos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Nomina2018Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Departamentos" EntityType="Self.Departamento" />
+          <EntitySet Name="Empleados" EntityType="Self.Empleado" />
+          <AssociationSet Name="FK_idDepartamentos" Association="Self.FK_idDepartamentos">
+            <End Role="Departamentos" EntitySet="Departamentos" />
+            <End Role="Empleados" EntitySet="Empleados" />
+          </AssociationSet>
+          <FunctionImport Name="spListarEmpleadosDet" ReturnType="Collection(Nomina2018Model.spListarEmpleadosDet_Result)" />
+        </EntityContainer>
+        <ComplexType Name="spListarEmpleadosDet_Result">
+          <Property Type="Int32" Name="IdEmpleado" Nullable="false" />
+          <Property Type="String" Name="numEmpleado" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="curp" Nullable="true" MaxLength="18" />
+          <Property Type="Int32" Name="idTipoRegimen" Nullable="false" />
+          <Property Type="String" Name="nombreRegimen" Nullable="true" MaxLength="80" />
+          <Property Type="Int32" Name="idDepartamentos" Nullable="true" />
+          <Property Type="String" Name="nombreDepartamento" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaInicioRelLaboral" Nullable="true" Precision="23" />
+          <Property Type="String" Name="puesto" Nullable="true" MaxLength="150" />
+          <Property Type="Int32" Name="idTipoContrato" Nullable="false" />
+          <Property Type="String" Name="nombreContrato" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="idTipoJornada" Nullable="false" />
+          <Property Type="String" Name="nombreJornada" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="idPeriodicidad" Nullable="true" />
+          <Property Type="String" Name="periodicidad" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="salarioDiarioIntegrado" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="String" Name="calle" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="noExterior" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="noInterior" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="colonia" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="localidad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="municipio" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="pais" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="codigoPostal" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="telefono" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="correo" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="alta" Nullable="true" />
+          <Property Type="Decimal" Name="importeFijo" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="aguinaldo" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="vacaciones" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="Decimal" Name="salarioBaseCotizacion" Nullable="true" Precision="19" Scale="4" />
+          <Property Type="DateTime" Name="fechaBaja" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="idSucursal" Nullable="true" />
+          <Property Type="String" Name="nombreSucursal" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Nomina2018ModelStoreContainer" CdmEntityContainer="Nomina2018Entities1">
+          <EntitySetMapping Name="Departamentos">
+            <EntityTypeMapping TypeName="Nomina2018Model.Departamento">
+              <MappingFragment StoreEntitySet="Departamentos">
+                <ScalarProperty Name="idDepartamentos" ColumnName="idDepartamentos" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="comentarios" ColumnName="comentarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleados">
+            <EntityTypeMapping TypeName="Nomina2018Model.Empleado">
+              <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="numEmpleado" ColumnName="numEmpleado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="idTipoRegimen" ColumnName="idTipoRegimen" />
+                <ScalarProperty Name="idDepartamentos" ColumnName="idDepartamentos" />
+                <ScalarProperty Name="fechaInicioRelLaboral" ColumnName="fechaInicioRelLaboral" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="idTipoContrato" ColumnName="idTipoContrato" />
+                <ScalarProperty Name="idTipoJornada" ColumnName="idTipoJornada" />
+                <ScalarProperty Name="idPeriodicidad" ColumnName="idPeriodicidad" />
+                <ScalarProperty Name="salarioDiarioIntegrado" ColumnName="salarioDiarioIntegrado" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="noExterior" ColumnName="noExterior" />
+                <ScalarProperty Name="noInterior" ColumnName="noInterior" />
+                <ScalarProperty Name="colonia" ColumnName="colonia" />
+                <ScalarProperty Name="localidad" ColumnName="localidad" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="alta" ColumnName="alta" />
+                <ScalarProperty Name="importeFijo" ColumnName="importeFijo" />
+                <ScalarProperty Name="aguinaldo" ColumnName="aguinaldo" />
+                <ScalarProperty Name="vacaciones" ColumnName="vacaciones" />
+                <ScalarProperty Name="salarioBaseCotizacion" ColumnName="salarioBaseCotizacion" />
+                <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spListarEmpleadosDet" FunctionName="Nomina2018Model.Store.spListarEmpleadosDet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Nomina2018Model.spListarEmpleadosDet_Result">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="numEmpleado" ColumnName="numEmpleado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="curp" ColumnName="curp" />
+                <ScalarProperty Name="idTipoRegimen" ColumnName="idTipoRegimen" />
+                <ScalarProperty Name="nombreRegimen" ColumnName="nombreRegimen" />
+                <ScalarProperty Name="idDepartamentos" ColumnName="idDepartamentos" />
+                <ScalarProperty Name="nombreDepartamento" ColumnName="nombreDepartamento" />
+                <ScalarProperty Name="fechaInicioRelLaboral" ColumnName="fechaInicioRelLaboral" />
+                <ScalarProperty Name="puesto" ColumnName="puesto" />
+                <ScalarProperty Name="idTipoContrato" ColumnName="idTipoContrato" />
+                <ScalarProperty Name="nombreContrato" ColumnName="nombreContrato" />
+                <ScalarProperty Name="idTipoJornada" ColumnName="idTipoJornada" />
+                <ScalarProperty Name="nombreJornada" ColumnName="nombreJornada" />
+                <ScalarProperty Name="idPeriodicidad" ColumnName="idPeriodicidad" />
+                <ScalarProperty Name="periodicidad" ColumnName="periodicidad" />
+                <ScalarProperty Name="salarioDiarioIntegrado" ColumnName="salarioDiarioIntegrado" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="noExterior" ColumnName="noExterior" />
+                <ScalarProperty Name="noInterior" ColumnName="noInterior" />
+                <ScalarProperty Name="colonia" ColumnName="colonia" />
+                <ScalarProperty Name="localidad" ColumnName="localidad" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="alta" ColumnName="alta" />
+                <ScalarProperty Name="importeFijo" ColumnName="importeFijo" />
+                <ScalarProperty Name="aguinaldo" ColumnName="aguinaldo" />
+                <ScalarProperty Name="vacaciones" ColumnName="vacaciones" />
+                <ScalarProperty Name="salarioBaseCotizacion" ColumnName="salarioBaseCotizacion" />
+                <ScalarProperty Name="fechaBaja" ColumnName="fechaBaja" />
+                <ScalarProperty Name="idSucursal" ColumnName="idSucursal" />
+                <ScalarProperty Name="nombreSucursal" ColumnName="nombreSucursal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

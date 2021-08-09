@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Nomina2018.Models.DepartamentosModel>
+
+<h2>Departamentos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idDepartamentos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comentarios)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idDepartamentos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comentarios)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.idDepartamentos }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idDepartamentos },new { onclick = "return confirm('Are sure wants to delete?')", @class = "btn btn-danger" })
+            
+        </td>
+    </tr>
+}
+
+</table>
